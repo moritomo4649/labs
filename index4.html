@@ -1,0 +1,16 @@
+<script type="text/javascript">
+function outer(){
+	var x = 1;
+alert("1:"+x);
+	return function (){
+		alert("2:"+x);
+		x = x + 1;
+	}
+}
+var f = outer();
+alert(f);
+f();
+f();
+f();
+
+</script>
