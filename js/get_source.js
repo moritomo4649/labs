@@ -1,5 +1,5 @@
 /*
-		ó·1ÅF
+		‰æã1Ôºö
 		var access_url	 = 'http://www.example.com';
 		var method		 = 'POST';
 		var params		 = {};
@@ -10,7 +10,7 @@
 		}
 		var source		 = accessUrl(access_url,method,getMakeQueryString(params['params']);
 
-		ó·2ÅF
+		‰æã2Ôºö
 		var access_url	 = 'http://www.example.com';
 		var method		 = 'GET';
 		var source		 = accessUrl(access_url,method,'');
@@ -72,10 +72,10 @@ var accessSource = {
 
 function retryAccess(access_url,method,params){
 	RETRY_COUNT++;
-	//çƒê⁄ë±
+	//ÂÜçÊé•Á∂ö
 	if( RETRY_COUNT <= MAX_RETRY_LIMIT ){
 		accessUrl(access_url,method,params);
-	//í‚é~
+	//ÂÅúÊ≠¢
 	}else{
 		STOP_TOOL_FLG = false;
 		RETRY_COUNT = 0;
