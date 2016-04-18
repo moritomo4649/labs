@@ -1,0 +1,34 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8" /> 
+<title>EventSource example</title> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<script> 
+	var es = new EventSource("ファイルまでのURL/streaming_msg.php"); 
+	var listener = function (event) { 
+//		var div = document.createElement("div");
+		var obj = document.getElementById("content");
+		var type = event.type; 
+		obj.innerHTML += (type === "message" ? event.data : es.url);
+//		div.appendChild(document.createTextNode(type + ": " + (type === "message" ? event.data : es.url))); 
+//		document.body.appendChild(div); 
+	}; 
+//	es.addEventListener("open", listener); 
+	es.addEventListener("message", listener); 
+	es.addEventListener("error", listener); 
+</script> 
+</head> 
+<body>
+Server Sent Events参考URL<br>
+http://blog.hidekiy.com/2009_06_01_archive.html<br>
+https://github.com/Yaffle/EventSource<br>
+https://developer.mozilla.org/ja/docs/Server-sent_events/Using_server-sent_events<br>
+<br>
+Instagram API参考URL<br>
+https://syncer.jp/instagram-api-matome<br>
+
+<br>
+<div style="border:aliceblue solid 1px;width:800px;" id="content"></div>
+</body>
+</html>

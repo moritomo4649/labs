@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8" /> 
+<title>EventSource example</title> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="text/javascript" src="jquery-1.4.2.js"></script>
+<script> 
+	var es = new EventSource("ファイルまでのURL/streaming_chat.php");
+	var listener = function (event) { 
+		var obj = document.getElementById("content");
+		var type = event.type;
+		var data = (type === "message" ? event.data : es.url);
+		data = data.split(/\s/);
+		data.reverse();
+		var html = '';
+		for(var i=0;i<data.length;i++){
+			html += data[i]+"<hr><br>";
+		}
+		obj.innerHTML = html;
+	}; 
+	es.addEventListener("message", listener);
+	es.addEventListener("error", listener);
+
+	jQuery(function($) {
+		$data = $('input[name="msg"]');
+		$('#submit').submit(function(event) {
+			event.preventDefault();
+			$.get('ファイルまでのURL/chat_write.php', {msg: $data.val()}, function(data) {
+			});
+		});
+	});
+
+</script>
+</head> 
+<body>
+<form name="chat_form" id="submit" method="post">
+<input type="text" name="msg" id="msg" value="" size="30"><br>
+<input type="submit" value="書く">
+</form>
+<br>
+<div style="width:100%;" id="content"></div>
+</body>
+</html>
